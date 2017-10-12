@@ -1,0 +1,213 @@
+Content-Type: text/html
+
+<!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="htttp://www.w3.org/1999/xhtml">
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+      <title>IP Services Search Tool</title>
+
+      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <style>
+        #result tr:hover{
+          background-color: #E4F1FE;
+        }
+        td, th{
+          width:1px;
+        }
+        td.ObjName{
+          width:100%;
+          word-break:break-all;
+          word-wrap:break-word;
+          text-overflow:ellipsis;
+        }
+        th{
+          font-size: .75vw;
+          text-align:center;
+        }
+        #push{min-height:5%;}
+      </style>
+      <script>
+          $(document).ready(function(){
+          //SET the searched IP to appear in the IPAddress field
+            var SearchedIP = "{{ ip_address }}"
+            var Region = "{{ region }}"
+              document.getElementById("IPSearch").value = SearchedIP;
+              document.getElementById("Region").value = Region;
+
+
+
+              $("#sub_bt").click(function(e){
+                  new_ip = ''
+                  var ip = document.getElementById("IPSearch").value;
+                  var parts = ip.split('.')
+                  var full_wild_octet = /^(\*)$/
+                  var wild_octet = /^([0-9a-zA-Z]*\*[0-9a-zA-Z]*)$/g
+                  var regex_ip = /^([\*]|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.([\*]|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.([\*]|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.([\*]|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+
+                  for(var i = 0; i<parts.length;i++){
+                    var part = parts[i]
+                    console.log(part)
+                    console.log(wild_octet.test(part))
+                    console.log(/^("\*")$/.test(part))
+                    if(part && part.length>3){
+                      e.preventDefault();
+                      alert("Invalid IP Address");
+                    }
+                    if(part.match(wild_octet) && !part.match(full_wild_octet)){
+                      e.preventDefault();
+                      alert("Invalid: Wild card not entered on full octet")
+                    }
+                    if (part<100 && part >= 10){
+                      part = '0'+part
+                    }else if(part <10){
+                      part = '00'+part
+                    }else if(part == ''){
+                      part = '000'
+                    }else{
+                      part = part
+                    }
+                    if(i==3){
+                      new_ip +=part
+                    }else{
+                      new_ip +=part+'.'
+                    }
+                  }
+                  if(parts.length<4){
+                    for( var j = 1; j<=4-parts.length;j++){
+                      new_ip+='000'
+                    }
+                  }
+                  console.log(new_ip.split('.').length)
+                  console.log(new_ip)
+
+                  //CHECKS if any IP is a Private IP
+                  if(new_ip>='010.000.000.000' && new_ip<='010.255.255.255'){
+                      e.preventDefault()
+                      alert('Invalid: Tradeweb Private IP')
+                  }
+                  if(new_ip>='172.016.000.000' && new_ip<='172.031.255.255'){
+                      e.preventDefault()
+                      alert('Invalid: Tradeweb Private IP')
+                  }
+                  if(new_ip>='192.168.000.000' && new_ip<='192.168.255.255'){
+                      e.preventDefault()
+                      alert('Invalid: Tradeweb Private IP')
+                  }
+                  if(!new_ip.match(regex_ip)){
+                    if({{re_res}} == 0){
+                        alert("DB is rebuilding. Please try again in 5 minutes.")
+                        e.preventDefault()
+                    }
+                  }
+              });
+          });
+
+      </script>
+  </head>
+  <body>
+     <h3 style = "text-align:center;">Global External Customer IP Address Registration Search </h3>
+      <h4 style = "text-align:center;">Built by Network Services</h4>
+      <div style="height:75px;"></div>
+      <form id="initialSearch" class="form-horizontal" style="width:40%" action"../../cgi-bin/CR_IPLookup.cgi">
+        <div class="form-group">
+          <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="Region">Region:</label>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <select name="Region" id="Region" class="form-control" onchange="this.form.submit()">
+              <option >US</option>
+              <option>EU</option>
+              <option>JP</option>
+            </select>
+          </div>
+        </div><!-- /.form-group -->
+        <div class="form-group">
+          <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="region">IP Address:</label>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <input type="IPSearch" name="IPSearch" class="form-control" id="IPSearch" placeholder="Enter IP Address">
+            <b>Asterisks (*) can only be inserted on full octets</b>
+          </div>
+        </div>
+        <button id="sub_bt" type="submit" class="btn btn-default pull-right">Search</button>
+      </form>
+      <div style="height:50px;"></div>
+      <table class="table table-bordered" style="table-layout:fixed;width:100%;">
+        <caption>&#10004 : Not pushed yet &nbsp;&nbsp;&nbsp;&nbsp; &#9989 : Pushed</caption>
+
+        <thead>
+          <tr>
+            <th colspan="2"></th>
+            <!-- JINJA2 -->
+            {% for groupby in service_dictionary %}
+               <!-- loop.index0 checks the iteration number of for-loop from base0 -->
+               <!-- groupby prints out the environment -->
+              <th colspan = {{ colspan_list[loop.index0]}}>{{ groupby }}</th> 
+            {% endfor %}
+            <!-- /.JINJA2 -->
+          </tr>
+          <tr>
+            <th>IP Address /Range</th>
+            <th>Object Name</th>
+
+            {% for groupby in service_dictionary %}
+            {% for service in service_dictionary[groupby] %}
+              <th colspan = {{service_dictionary[groupby][service]|length/2}}>{{service}}</th>
+            {% endfor %}
+            {% endfor %}
+          </tr>
+          <tr>
+            <th colspan="2"></th>
+            {% for group in service_dictionary %}
+            {% for service in service_dictionary[group] %}
+            {% for service_type in service_dictionary[group][service][0::2] %}
+              
+                <th>{{ service_type }}</th>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody id="result">
+          <!-- RESULT -->
+          {% if result["data"] %}
+          {% for item in result["data"] %}
+          {% if item["Prev_Name"] != item["Name"] %}
+          <tr class = 'information' id="info">
+            <!-- CHECKS if there is a range or if single IP -->
+            {% if item["FirstIP"] == item["LastIP"] %}
+              <td class = "IPRange">{{ item["FirstIP"] }}</td>
+            {% else %}
+              <td class = "IPRange">{{ item["FirstIP"] }} - {{ item["LastIP"] }}</td>
+            {% endif %}
+            {% if item["Group"] %}
+            <td class = "ObjName">{{ item["Name"] }}</td>
+            {% for group in service_dictionary %}
+            {% for service in service_dictionary[group] %}
+            {% for service_type in service_dictionary[group][service][1::2] %}
+            <td class = '{{ service }}' style="text-align:center;">
+              {% for object_name, value in service_identifiers.iteritems() %}
+              {% for ident in value %}
+              {% if service_type==ident and object_name==item["Name"] %}
+              {% if item["ActivePolicy"]=="Active" %}
+                &#9989
+              {% else %}
+                &#10004 
+              {% endif %}<!-- if item["ActivPolicy"] == "Active -->
+              {% endif %}<!-- if service_type==ident and object_name==item["Name"] -->
+              {% endfor %}<!-- for ident in value -->
+              {% endfor %}<!-- for object_name, value in service_identifiers.iteritems() -->
+            </td><!-- /.'{{Service}} -->
+            {% endfor %} <!-- END FOR service_type in service_dictionary -->
+            {% endfor %} <!-- END FOR service in service_dictionary -->
+            {% endfor %} <!-- END FOR group in service_dictionary -->
+            {% endif %} <!-- END IF item["Group"] -->
+<!--If matching class name, and service name matches the column, put check -->
+          </tr>
+          {% endif %}<!-- if item["Prev_Name"] != item["Name"] -->
+          {% endfor %}<!-- END FOR item in result["data"] -->
+          {% endif %}<!-- END if result["data"] -->  
+        </tbody>
+      </table>
+
+  </body>
+</html>

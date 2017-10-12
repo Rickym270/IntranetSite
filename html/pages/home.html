@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org//TR/xhml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+  <head>
+    <script src="../js/tether.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/employees.js?ver=22"></script>
+    <script src="../js/home.js?ver=1"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+  </head>
+  <body>
+    <div id='push3'></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h3>Today</h3>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="card mo-ni-card">
+          <div class="container margin-top margin-left no-bottom-margin">
+            <p><b>On-Call/Morning Check Person:</b></p>
+            <div class="row v-center personInfo" style="display:none">
+              <div class="container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="card-info padding-left">
+                    <h3 class="no-top-margin no-bottom-margin"style="display:block"><b id="morning_person1_name"></b></h3>
+                    <p style="display:block">US Networks</p>
+                    <p style="display:block"><b>Email:</b><span id ="morning_person1_email">&nbsp;</span></p>
+                  </div><!-- card-info padding-left -->
+                </div><!-- col-xs-10 col-sm-10 col-md-10 col-lg-9 col-lg-offset-1 -->
+              </div><!-- container -->
+            </div><!-- row v-center -->
+          </div><!-- custom-container margin-top margin-left no-bottom-margin -->
+        </div><!-- card mo-ni-card -->
+      </div><!-- col-*-6 -->
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-bottom:20px;">
+        <div class="card mo-ni-card">
+          <div class="container margin-top margin-left no-bottom-margin">
+            <p><b>On-Call/Morning Check Person:</b></p>
+            <div class="row v-center personInfo" style="display:none">
+              <div class="container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="card-info padding-left">
+                    <h3 class="no-top-margin no-bottom-margin"style="display:block"><b id="morning_person2_name"></b></h3>
+                    <p style="display:block">US Networks</p>
+                    <p style="display:block"i><b>Email:</b><span id ="morning_person2_email">&nbsp;</span></p>
+                  </div><!-- card-info padding-left -->
+                </div><!-- col-xs-10 col-sm-10 col-md-10 col-lg-9 col-lg-offset-1 -->
+              </div><!-- container -->
+            </div><!-- row v-center -->
+          </div><!-- custom-container margin-top margin-left no-bottom-margin -->
+        </div><!-- card mo-ni-card -->
+        <div id="push2"></div>
+      </div><!-- col-*-6 -->
+      
+      <h3>The Team</h3>
+      <div id="theteam">
+      <!--                                      Copy & Paste the following snippet to add more people                                                       -->
+      </div>
+    </div>
+    <iframe name="rotation" id="rotation" src="US-Network-Early-Rotation-Schedule_files/sheet001.htm" style="display:none" onload="parseSchedule(this);"></iframe>
+      
+      
+  </body>
+</html>

@@ -1,0 +1,181 @@
+
+@font-face{
+  font-family:          'Sans';
+  src:                  url('../fonts/verdana.ttf') format('truetype');
+}
+h1, h4, .defaultText{
+  padding-left:         10px;
+  color:                #669;
+  white-space:          nowrap;
+}
+table{
+  font-family:          'Sans';
+  font-style:           normal;
+  font-size:            12px;
+  background:           #fff;
+  border-collapse:      collapse;
+  text-align:           left;
+  margin:               10px;
+  color:                #669;
+}
+table th{
+  font-size:            14px;
+  font-weight:          normal;
+  background-color:     #F2F1EF;
+  border-top:           1px solid #BFBFBF;
+  border-bottom:        1px solid #BFBFBF;
+  padding:              8px 5px 8px 5px;
+  white-space:          nowrap;
+  color:                #009;
+}
+table td{
+  padding:              6px 6px 6px 6px;
+}
+#chart tbody td{
+  text-align:           left;
+  border-bottom:        1px solid #BFBFBF;
+}
+#chart tbody tr:hover{
+  background-color:     #E4F1FE;
+}
+a:hover{
+  color:                #fff;
+  background-color:     #A4C0E2;
+}
+#chart tr td{
+  vertical-align:       top;
+}
+#tabs{
+  visibility:           hidden;
+}
+#calendar{
+  vertical-align:       top;
+  text-align:           center;
+  padding-left:         200px;
+  padding-top:          95px;
+}
+#calendar tr{
+  border:               1px solid #BFBFBF;
+}
+#calendar .left,
+#calendar .right,
+#calendar .monthYear{
+  background-color:     #669;
+  color:                #fff;
+  font-weight:          bold;
+  text-align:           center;
+}
+#calendar .calHeader{ 
+  box-shadow:           inset 0px 0px 20px 0px #000; 
+}
+#calendar .left a,
+#calendar .right a{
+  text-decoration:      none;
+  color:                white;
+  padding:              5px;
+}
+td.actday {
+  background-color:     #A4C0E2;
+}
+td.actday a{
+  color:                #FFF;
+  font-weight:          bold;
+  text-decoration:      none;
+}
+#calendar tr.dates td{
+  border:               1px solid #BFBFBF;
+  text-align:           center;
+}
+#calendar tr.dates td a{
+  text-decoration:      none;
+  padding:              3px;
+}
+#calendar tr.dates td:hover{
+  background-color:     #A4C0E2;
+  color:                #fff;
+}
+#calendar tr.dates td:hover a{
+  text-decoration:      none;
+  color:                white;
+}
+#main {
+  width:                850px;
+}
+#main table{
+  text-align:           left;
+  width:                100%;
+}
+#push1{height:          5px;}
+#push2{height:          10px;}
+#push3{height:          15px;}
+#push4{height:          20px;}
+#push5{height:          25px;}
+#push6{height:          30px;}
+
+/* ============================ Post Search Form Submit ================================= */
+
+.post_form{
+  position:             fixed;
+  margin-top:           1vh;
+  width:                50vh;
+  float:                left;
+}
+.post_results{
+  margin-bottom:        5vh;   
+  width:                79%;
+  float:                right;
+  border-left:          4px double #BFBFBF;
+  border-right:         1px solid #BFBFBF;
+}
+
+.post_dropdown{
+  width:                150px;
+}
+
+.post_newTickets{
+  position:             fixed;
+  margin-top:           27.5%;
+}
+
+/* OLD STYLES
+table {
+  font-size:12px;
+  background:#fff;
+  border-collapse:collapse;
+  text-align:left;
+  margin:10px;
+}
+table th{
+  font-size:14px;
+  font-weight:normal;
+  color:#039;
+  border-bottom:2px solid #6678b1;
+  border-top:2px solid #6678b1;
+  padding:2px 2px;
+}
+table td{
+  color:#669;
+  padding:2px 2px;
+}
+#chart tbody td{
+  text-align:left;border-bottom:1px solid #ccc;
+  padding: 2px 8px 2px 2px;
+}
+
+#chart tbody th{text-align:left;padding: 2px 8px 2px 2px;}
+#calendar tbody td{border-bottom:1px solid #ccc;}
+#chart tbody tr:hover td{color:#009;}
+a:link, a:visited {display:block;text-decoration:none;color:#009;}
+a:active, a:hover {color:#fff;background-color:#A4C0E2;}
+td.actday {background-color:#A4C0E2;color:#fff;}
+#main {text-align:center;width:850px;}
+#calendar {width:150px;vertical-align:top;text-align:center;}
+#name {width:150px;}
+#chart td{white-space: nowrap;}
+#chart th a:link {display:block;color:#009;}
+#chart th a:hover {color:#fff;background-color:#A4C0E2;}
+#chart tr td {vertical-align:top;}
+#tabs{
+  visibility:hidden;
+}
+*/

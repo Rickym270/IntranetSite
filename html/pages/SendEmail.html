@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org//TR/xhml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="../js/tether.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+  </head>
+<body>
+  <div class="container-fluid" style="margin-right:2vw;padding-right:3vw;padding-left:3vw;">
+    <div class="row">
+      <h3>Contact Us</h3>
+      <div id="push1"></div>
+      <div class="container" style="width:95%;">
+        <p class="h5">Have any suggestions as to how to make this page better? Send us an email! All emails will be sent to US Network services for review</p>
+      </div><!-- container -->
+      <div id="push3"></div>
+      <div class="form-group">
+        <form name="email_template" id="email_template" action="cgi-bin/sendemail.py" method="post">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="fname">Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="lname">&nbsp;</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
+          </div><!-- col-*-6 -->
+        </div><!-- row -->
+        <div id="push3"></div> 
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off" required>
+          </div><!-- col-*-12 -->
+        </div><!-- row -->
+        
+        <div id="push3"></div> 
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label for="msg">Message</label>
+            <textarea class="form-control" id="msg" name="msg" placeholder="Message" rows="5" style='min-height:5vh;max-height:50vh;max-width:100%;min-width:100%;' required></textarea>
+          </div><!-- col-*-12 -->
+        </div><!-- row -->
+        <div class="row pull-right" style="margin-top:20px;">
+          <button type="submit" class="btn btn-primary">Send Email</button>
+        </div><!-- row pull-right -->
+        </form>
+      </div><!-- form-group -->
+    </div><!-- row -->
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+table {font-size:12px;
+	background:#fff;
+	border-collapse:collapse;
+	text-align:left;
+	margin:10px;}
+table th{font-size:14px;
+	font-weight:normal;
+	color:#039;
+	border-bottom:2px solid #6678b1;
+	border-top:2px solid #6678b1;
+	padding:2px 2px;}
+table td{color:#669;
+	padding:2px 2px;}
+#chart tbody td{text-align:left;border-bottom:1px solid #ccc;
+		padding: 2px 8px 2px 2px;}
+#chart tbody th{text-align:left;padding: 2px 8px 2px 2px;}
+#calendar tbody td{border-bottom:1px solid #ccc;}
+#chart tbody tr:hover td{color:#009;}
+a:link, a:visited {display:block;text-decoration:none;color:#009;}
+a:active, a:hover {color:#fff;background-color:#A4C0E2;}
+td.actday {background-color:#A4C0E2;color:#fff;}
+#main {text-align:center;width:850px;}
+#calendar {width:150px;vertical-align:top;text-align:center;}
+#name {width:150px;}
+#chart td{white-space: nowrap;}
+#chart th a:link {display:block;color:#009;}
+#chart th a:hover {color:#fff;background-color:#A4C0E2;}
+#chart tr td {vertical-align:top;}
+#tabs{
+	visibility:hidden;
+}
